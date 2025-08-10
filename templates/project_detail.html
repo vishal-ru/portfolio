@@ -1,0 +1,221 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ title }}</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9fbfd;
+      color: #111;
+    }
+
+    /* Title Bar */
+    .title-bar {
+      background: #35075fff;
+      color: #fff;
+      text-align: center;
+      padding: 25px 0;
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* Main Content */
+    .main-content {
+      max-width: 1100px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+
+
+    .main-content p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-section {
+      margin-top: 2px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    }
+
+    .btn-section {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .scroll-btn {
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      background: #35075fff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .scroll-btn:hover {
+      background: #4a0ba9;
+    }
+
+    .btn-sections {
+      text-align: right;
+      margin-top: 30px;
+    }
+
+    /* Overlay background */
+.img-overlay {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Big image style */
+.img-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Close button */
+.img-overlay span {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- 🔝 Fixed Title -->
+  <div class="title-bar">
+    {{ title }}
+  </div>
+
+  <!-- 📦 Unified Container -->
+  <div class="main-content" data-aos="fade-up">
+        <!-- 📊 Embedded Dashboard -->
+    {% if dashboard_embed %}
+    <div class="dashboard-section" data-aos="fade-up">
+      {% comment %} <h3>📈 Interactive Dashboard</h3> {% endcomment %}
+      {{ dashboard_embed|safe }}
+    </div>
+    {% endif %}
+    {% if dashboard_html %}
+     {% comment %} <h3>📊 Interactive Dashboard</h3> {% endcomment %}
+      <iframe src="{{ dashboard_html }}" width="100%" height="600px" style="border:none;"></iframe>
+    {% endif %}
+
+
+      {% if dashboard_html_button %}
+      <div class="btn-sections">
+        <a href="{% static dashboard_html_button %}" target="_blank" class="scroll-btn">Jupyter Notebook</a>
+      </div>
+      {% endif %}
+
+      {% if link %}
+        <div class="btn-sections" style="text-align: right;">
+          <a href="{{ link }}" target="_blank" class="scroll-btn">Launch Web App</a>
+        </div>
+      {% endif %}
+
+      {% if title == "Smart Resume Screening Engine" %}
+          <h3>📷 Project Screenshot</h3>
+          <img src="{% static 'images/ss1.png' %}" 
+               alt="Resume Screening Engine Screenshot"
+               style="width:100%; max-width:500px; border-radius:8px; margin:20px 0;"
+               onclick="openOverlay(this.src)">
+          <img src="{% static 'images/ss2.png' %}" 
+               alt="Resume Screening Engine Screenshot"
+               style="width:100%; max-width:500px; border-radius:8px; margin:20px 0;"
+               onclick="openOverlay(this.src)">
+          <img src="{% static 'images/ss3.png' %}" 
+               alt="Resume Screening Engine Screenshot"
+               style="width:100%; max-width:500px; border-radius:8px; margin:20px 0;"
+               onclick="openOverlay(this.src)">
+          <img src="{% static 'images/ss4.png' %}" 
+               alt="Resume Screening Engine Screenshot"
+               style="width:100%; max-width:500px; border-radius:8px; margin:20px 0;"
+               onclick="openOverlay(this.src)">
+      {% endif %}
+
+      <div class="img-overlay" id="imgOverlay">
+  <span onclick="closeOverlay()">×</span>
+  <img src="" alt="Full Size">
+</div>
+
+<script>
+function openOverlay(src) {
+  document.getElementById("imgOverlay").style.display = "flex";
+  document.querySelector("#imgOverlay img").src = src;
+}
+
+// Close overlay when clicking ×
+function closeOverlay() {
+  document.getElementById("imgOverlay").style.display = "none";
+}
+
+// Close overlay when clicking outside image
+document.getElementById("imgOverlay").addEventListener("click", function(e) {
+  if (e.target === this) {
+    closeOverlay();
+  }
+});
+</script>
+
+
+    {% comment %} <img src="{% static image %}" alt="{{ title }}"> {% endcomment %}
+    <p>{{ description }}</p>
+    <div>{{ details|safe }}</div>
+
+
+
+    </div>
+
+
+  
+    <!-- 🔽 Back Button -->
+    <div class="btn-section">
+      <a href="{% url 'project_list' %}#projects" class="scroll-btn"> Return To Prejects</a>
+
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+</body>
+</html>
+
