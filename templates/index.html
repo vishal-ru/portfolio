@@ -673,6 +673,182 @@
   font-weight: 500;
 }
 
+    
+/* 📱 Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  /* Reduce padding and font size for hero section */
+  .section {
+    padding: 40px 15px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    line-height: 2.2rem;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.4rem;
+  }
+
+   .top-nav {
+      position: fixed; /* 🛠️ Make it fixed */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #602499ff;
+      padding: 8px 30px;
+      font-size: 0.95rem;
+      color: #2E2E2E;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      transition: top 0.3s ease-in-out;
+    }
+
+    .top-nav .social-icon {
+      width: 18px;
+      margin-left: 1px;
+      margin-right: 1px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease;
+    }
+    .top-nav .social-icons {
+      width: 13px;
+      margin-left: 1px;
+      margin-right: 1px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s ease;
+    }
+
+    .top-nav .social-icon:hover {
+      transform: scale(1.2);
+    }
+
+  /* Navbar: stack items vertically for mobile */
+  .main-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 6px 13px;
+  }
+
+  .main-nav .nav-left .brand-name {
+      margin-left: 3px;
+      margin-right: 18px;
+      flex-wrap: wrap;
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #00f5ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+  .main-nav .nav-right {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+
+  .main-nav .nav-right a {
+    margin: 8px 12px 0 0;
+    font-size: 1rem;
+  }
+
+    /* Make badge move below text for mobile */
+  .badge-right {
+    position: static;
+    margin-top: 50px ;
+    margin-bottom:60px
+    text-align: center;
+  }
+  .badge-right img {
+    max-width: 60px;
+  }
+
+
+ /* ===== Tools grid (desktop & mobile friendly) ===== */
+.tools-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;        /* nowrap on small screens -> horizontal scroll */
+  gap: 12px;
+  justify-content: flex-start; /* left aligned so scrolling starts from left */
+  align-items: center;
+  overflow-x: auto;
+  padding: 10px 12px;
+  -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+  scrollbar-width: none;  /* Firefox: hide scrollbar */
+}
+.tools-grid::-webkit-scrollbar { display: none; } /* Chrome/Safari: hide scrollbar */
+.tools-grid:focus { outline: none; }
+
+/* Each tool box stays fixed size and won't shrink */
+.tool-box {
+  flex: 0 0 auto;        /* do not grow, do not shrink, auto basis */
+  min-width: 92px;       /* size on mobile */
+  max-width: 140px;      /* size limit */
+  text-align: center;
+  background: #ffffff;
+  color: #222;
+  padding: 12px;
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* icon + label */
+.tool-box img {
+  width: 46px;
+  height: auto;
+  display: block;
+  margin: 0 auto 8px;
+}
+.tool-box p {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* ===== Desktop: allow wrapping and center items ===== */
+@media (min-width: 900px) {
+  .tools-grid {
+    flex-wrap: wrap;           /* grid-like layout on larger screens */
+    justify-content: center;
+    gap: 18px;
+    padding: 20px 0;
+  }
+  .tool-box {
+    flex: 0 1 120px;           /* let boxes be a bit flexible on desktop */
+    min-width: 120px;
+  }
+}
+
+
+  /* Project cards: full width on small screens */
+  .project-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* About section: stack vertically */
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .about-left img {
+    width: 200px;
+  }
+  .about-right h1 {
+    font-size: 1.8rem;
+  }
+
+  /* Contact boxes full width */
+  .contact-box {
+    max-width: 100%;
+  }
+}
+
 
 
 
