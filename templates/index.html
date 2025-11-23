@@ -119,6 +119,115 @@
       margin-bottom: 10px;
     }
 
+    /* ===== Certification section: header + responsive horizontal grid ===== */
+
+/* Center the heading */
+.cert-title {
+  text-align: center;
+  width: 100%;
+  font-size: 2.4rem;
+  color: #8c2f39;
+  margin-bottom: 30px;
+  font-weight: 800;
+}
+
+/* Center button below grid */
+.cert-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.cert-btn {
+  background-color: #8c2f39 !important;
+  padding: 12px 28px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  box-shadow: 0 0 12px rgba(140, 47, 57, 0.4);
+}
+
+.cert-section {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  box-sizing: border-box;
+}
+
+/* header row: keeps title separate from the grid */
+.cert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 22px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.cert-header h1 {
+  color: #8c2f39;
+  font-size: 2.2rem;
+  margin: 0;
+  font-weight: 800;
+}
+
+/* grid: horizontal layout */
+.cert-grid {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;     /* will wrap on smaller screens */
+}
+
+/* card: sized to show three per row on large screens */
+.cert-card {
+  flex: 0 1 calc(33.333% - 28px); /* three cards per row */
+  max-width: 400px;
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  text-align: center;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* image inside card */
+.cert-card img {
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* title */
+.cert-card h2 {
+  font-size: 1.05rem;
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1000px) {
+  .cert-card { flex: 0 1 calc(50% - 28px); } /* 2 cards per row */
+  .cert-card img { max-height: 220px; }
+}
+
+@media (max-width: 640px) {
+  .cert-card { flex: 0 1 100%; } /* 1 card per row (stack) */
+  .cert-header { justify-content: center; text-align: center; }
+  .cert-header .scroll-btn { margin-top: 12px; }
+  .cert-card img { max-height: 260px; }
+}
+
+
     .verify-btn {
       display: inline-block;
       margin-top: 15px;
@@ -945,19 +1054,47 @@
   </div>
 
 
-  <!-- 🎓 CERTIFICATION SECTION -->
-  <div id="certificates" class="section" style="background: #fbeee0; color: #222;">
-    <div class=".contentttt" data-aos="fade-up">
-      <h1>🎓 Certification</h1>
+    <!-- 🎓 CERTIFICATION SECTION (REPLACE THIS BLOCK) -->
+<div id="certificates" class="section" style="background: #fbeee0; color: #222;">
+  <div class="cert-section" data-aos="fade-up">
+
+    <!-- header (separate from cards) -->
+    <!-- CENTERED HEADING -->
+    <h1 class="cert-title">🎓 Certification</h1>
+
+    <!-- horizontal grid of cert cards -->
+    <div class="cert-grid">
       <div class="cert-card" data-aos="zoom-in">
-        <a href="https://www.coursera.org/account/accomplishments/professional-cert/6IUH2BWP0D54" target="_blank">
-        <img src="{% static 'images/certificate.png' %}" alt="Google Data Analytics Certificate">
+        <a  target="_blank" rel="noopener">
+        
+          <img src="{% static 'images/certificate.png' %}" alt="PostgreSQL Certificate">
         </a>
-        <h2  class="unbold">Google Data Analytics Professional Certificate</h2> 
+        <h2 class="bold">Google Data Analytics Professional Certificate</h2>
       </div>
-      <a href="#about" class="scroll-btn">Know Me More</a>
+
+      <div class="cert-card" data-aos="zoom-in">
+        <a href="#" target="_blank" rel="noopener">
+          <img src="{% static 'images/certificate1.png' %}" alt="PostgreSQL Certificate">
+        </a>
+        <h2 class="bold">PostgreSQL Specialization Certificate (University of Michigan)</h2>
+      </div>
+
+      <div class="cert-card" data-aos="zoom-in">
+        <a href="#" target="_blank" rel="noopener">
+          <img src="{% static 'images/certificate2.png' %}" alt="Business Intelligence Certificate">
+        </a>
+        <h2 class="bold">Google Business Intelligence Professional Certificate</h2>
+      </div>
     </div>
+
+    <!-- BUTTON AT BOTTOM CENTER -->
+    <div class="cert-button-container">
+      <a href="#about" class="scroll-btn cert-btn">Know Me More</a>
+    </div>
+
   </div>
+</div>
+
 
 
 
